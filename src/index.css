@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#oml-stage {
+  margin-left: 10rem;
+}
+
+#oml-controls {
+  display: none !important;
+}
+
+#oml-levitated-btn {
+  display: none !important;
+}
