@@ -1,13 +1,14 @@
 import { loadOhMyLive2D } from "oh-my-live2d";
 
-export default function loadOhMyLive2DConfig() {
+function loadOhMyLive2DConfig() {
   loadOhMyLive2D({
     sayHello: false,
     source: "https://l2d-model.vercel.app/Nindi",
     models: [
       {
         path: `/model.json`,
-        scale: 1,
+        scale: 1.5,
+        stageStyle: { width: "auto", height: 700 },
       },
     ],
     transitionTime: 0,
@@ -46,3 +47,5 @@ export default function loadOhMyLive2DConfig() {
     // },
   });
 }
+
+export default loadOhMyLive2DConfig;
