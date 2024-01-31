@@ -4,7 +4,7 @@ export default function Character() {
       <img
         src="/bgCharacter.gif"
         alt="Working Room"
-        className="w-full h-full"
+        className="h-full w-full"
       />
     </div>
   );
