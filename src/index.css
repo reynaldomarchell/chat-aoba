@@ -8,13 +8,7 @@ body {
 }
 
 #oml-stage {
-  margin-left: 16rem;
-}
-
-@media (max-width: 1028px) {
-  #oml-stage {
-    margin-left: 1rem;
-  }
+  margin-left: 1rem;
 }
 
 #oml-controls {

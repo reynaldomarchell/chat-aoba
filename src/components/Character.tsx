@@ -1,10 +1,10 @@
 export default function Character() {
   return (
-    <div className="h-screen w-3/5 overflow-hidden">
+    <div className="md:h-full">
       <img
         src="/bgCharacter.gif"
         alt="Working Room"
-        className="h-full w-full"
+        className="h-full w-full object-cover md:h-full"
       />
     </div>
   );
