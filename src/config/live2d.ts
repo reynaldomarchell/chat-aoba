@@ -3,7 +3,7 @@ import { loadOhMyLive2D } from "oh-my-live2d";
 function loadOhMyLive2DConfig() {
   loadOhMyLive2D({
     sayHello: false,
-    source: "https://l2d-model.vercel.app/Nindi",
+    source: "/Nindi",
     models: [
       {
         path: `/model.json`,

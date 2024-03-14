@@ -1,6 +1,6 @@
 export default function Chat() {
   return (
-    <div className="flex-grow basis-11/12">
+    <div className="flex-grow basis-9/12">
       <div className="flex h-full flex-col justify-between bg-gradient-to-br from-slate-950 to-slate-800">
         <div className="flex h-20 items-center justify-between px-5 py-3">
           <h1>History</h1>

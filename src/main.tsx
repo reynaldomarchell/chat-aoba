@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-import loadOhMyLive2DConfig from "./config/live2d";
+import loadOhMyLive2DConfig from "./config/live2d.ts";
 
 loadOhMyLive2DConfig();
 
