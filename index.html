@@ -7,10 +7,19 @@
     <title>Chat with Nindi</title>
   </head>
   <body>
+    <canvas
+      class="live2d absolute left-0 top-0 ml-36 mt-10 h-[200px] transition-all min-[431px]:ml-52 min-[431px]:h-[300px] min-[611px]:mt-20 min-[611px]:h-[330px] md:ml-32 md:mt-40 md:h-[600px] lg:ml-52"
+      id="live2d"
+      width="300"
+      height="525"
+    ></canvas>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- <script src="/src/config/live2d.min.js"></script>
-    <script src="/src/config/live2dcubismcore.min.js"></script> -->
+    <script src="src/config/live2d.js"></script>
+    <script>
+      loadlive2d("live2d", "/Nindi/model.json");
+    </script>
   </body>
 </html>
