@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { CircleFadingPlus, Coffee, SendHorizontal } from "lucide-react";
+import Markdown from "react-markdown";
 
 type chatHistoryType = {
   role: string;
@@ -114,7 +115,9 @@ export default function Chat() {
 function ChatItem({ role, parts }: chatHistoryType) {
   return (
     <div className={role == "user" ? divStyle.user : divStyle.model}>
-      <p className={role == "user" ? pStyle.user : pStyle.model}>{parts}</p>
+      <p className={role == "user" ? pStyle.user : pStyle.model}>
+        <Markdown>{parts}</Markdown>
+      </p>
     </div>
   );
 }
