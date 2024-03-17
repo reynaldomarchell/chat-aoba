@@ -9,7 +9,7 @@ export default function Chat() {
 
   return (
     <div className="z-10 flex-grow basis-9/12">
-      <div className="flex h-full flex-col justify-between bg-gradient-to-br from-slate-950 to-slate-900">
+      <div className="flex h-full flex-col justify-evenly bg-gradient-to-br from-slate-950 to-slate-900">
         <ChatHeader />
 
         <ChatBody />
