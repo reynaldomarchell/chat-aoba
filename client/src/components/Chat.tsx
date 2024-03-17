@@ -115,9 +115,9 @@ export default function Chat() {
 function ChatItem({ role, parts }: chatHistoryType) {
   return (
     <div className={role == "user" ? divStyle.user : divStyle.model}>
-      <p className={role == "user" ? pStyle.user : pStyle.model}>
+      <span className={role == "user" ? pStyle.user : pStyle.model}>
         <Markdown>{parts}</Markdown>
-      </p>
+      </span>
     </div>
   );
 }
