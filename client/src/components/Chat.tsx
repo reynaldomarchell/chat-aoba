@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CircleFadingPlus, Coffee, SendHorizontal } from "lucide-react";
 import Markdown from "react-markdown";
@@ -20,6 +20,7 @@ const pStyle = {
 
 export default function Chat() {
   const [value, setValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [chatHistory, setChatHistory] = useState<chatHistoryType[]>([]);
 
   async function getResponse() {
@@ -30,24 +31,23 @@ export default function Chat() {
         headers: { "Content-Type": "application/json" },
       };
 
+      setIsLoading(true);
       const response = await fetch("http://localhost:8000/nindi", options);
       const data = await response.json();
 
       setChatHistory((previousChat) => [
         ...previousChat,
         {
-          role: "user",
-          parts: value,
-        },
-        {
           role: "model",
           parts: data,
         },
       ]);
 
-      setValue("");
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -58,6 +58,15 @@ export default function Chat() {
       return;
     }
 
+    setValue("");
+    setChatHistory((previousChat) => [
+      ...previousChat,
+      {
+        role: "user",
+        parts: value,
+      },
+    ]);
+
     getResponse();
   }
 
@@ -65,6 +74,12 @@ export default function Chat() {
     setValue("");
     setChatHistory([]);
   }
+
+  // Scroll to bottom of chat every time a new message is sent
+  useEffect(() => {
+    const chat = document.querySelector(".scrollbar-hide");
+    chat?.scrollTo(0, chat.scrollHeight);
+  }, [chatHistory]);
 
   return (
     <div className="z-10 flex-grow basis-9/12">
@@ -86,15 +101,22 @@ export default function Chat() {
               <p>It seems quiet now</p>
             </div>
           ) : (
-            chatHistory.map((chat, index) => (
-              <ChatItem key={index} role={chat.role} parts={chat.parts} />
-            ))
+            <>
+              {chatHistory.map((chat, index) => (
+                <ChatItem key={index} role={chat.role} parts={chat.parts} />
+              ))}
+              {isLoading && (
+                <div>
+                  <span className="loading loading-dots loading-md"></span>
+                </div>
+              )}
+            </>
           )}
         </div>
 
         <form
           onSubmit={handleSendChat}
-          className="flex h-16 items-center justify-between gap-3 px-2 py-7"
+          className="flex h-16 items-center justify-between gap-3 px-2 py-5"
         >
           <input
             value={value}
