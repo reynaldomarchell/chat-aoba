@@ -17,7 +17,7 @@ app.listen(PORT, () => {
   console.log("Server is running on port 8000");
 });
 
-app.post("/nindi", async (req, res) => {
+app.post("/aoba", async (req, res) => {
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
   // const chat = model.startChat({

@@ -32,7 +32,7 @@ export default function Chat() {
       };
 
       setIsLoading(true);
-      const response = await fetch("http://localhost:8000/nindi", options);
+      const response = await fetch("http://localhost:8000/aoba", options);
       const data = await response.json();
 
       setChatHistory((previousChat) => [
