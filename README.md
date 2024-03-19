@@ -1,30 +1,60 @@
-# React + TypeScript + Vite
+# Chat Aoba💌
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Information
 
-Currently, two official plugins are available:
+Aoba is a 2D AI assistant powered by the powerful large language model Gemini. You can send messages to Aoba, and she will send back a reply.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Tools that used in this app
 
-## Expanding the ESLint configuration
+- React JS
+- Vite
+- Express JS
+- Tailwind CSS
+- daisyUI
+- Live2D
+- Gemini AI
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+**NOTES**: Make sure you have installed TypeScript on your machine. If you haven't, run this command on your terminal
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+  npm install -g typescript
+  npm install -g ts-node
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone this repository
+
+```bash
+  git clone https://github.com/reynaldomarchell/chat-aoba.git
+```
+
+2.  Go to the project directory and open VS Code
+
+```bash
+  cd chat-aoba
+  code .
+```
+
+3. On server directory, change `.env.example` to `.env`, then fill in your API key
+
+```bash
+  # Input your Google Gemini API key here
+  GEMINI_API_KEY =
+```
+
+4. Open new terminal on server directory, install the dependencies and run the server
+
+```bash
+  npm i
+  npm run server
+```
+
+5. Open new terminal on client directory, install the dependencies and run the app
+
+```bash
+  npm i
+  npm run dev
+```
+
+6. App will run on http://localhost:5173/
