@@ -5,7 +5,7 @@ import Markdown from "react-markdown";
 
 type chatHistoryType = {
   role: string;
-  parts: string;
+  parts: any[];
 };
 
 const divStyle = {
@@ -13,7 +13,7 @@ const divStyle = {
   model: "flex justify-start",
 };
 
-const pStyle = {
+const textStyle = {
   user: "ml-4 w-fit rounded-xl rounded-tr-none bg-indigo-950 px-2 py-1",
   model: "mr-4 w-fit rounded-xl rounded-tl-none bg-indigo-800 px-2 py-1",
 };
@@ -39,7 +39,7 @@ export default function Chat() {
         ...previousChat,
         {
           role: "model",
-          parts: data,
+          parts: [{ text: data }],
         },
       ]);
 
@@ -63,7 +63,7 @@ export default function Chat() {
       ...previousChat,
       {
         role: "user",
-        parts: value,
+        parts: [{ text: value }],
       },
     ]);
 
@@ -137,8 +137,8 @@ export default function Chat() {
 function ChatItem({ role, parts }: chatHistoryType) {
   return (
     <div className={role == "user" ? divStyle.user : divStyle.model}>
-      <span className={role == "user" ? pStyle.user : pStyle.model}>
-        <Markdown>{parts}</Markdown>
+      <span className={role == "user" ? textStyle.user : textStyle.model}>
+        <Markdown>{parts[0].text}</Markdown>
       </span>
     </div>
   );

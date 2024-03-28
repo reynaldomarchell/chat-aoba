@@ -1,7 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const {
+  GoogleGenerativeAI,
+  HarmBlockThreshold,
+  HarmCategory,
+} = require("@google/generative-ai");
 
 dotenv.config();
 
@@ -18,18 +22,44 @@ app.listen(PORT, () => {
 });
 
 app.post("/aoba", async (req, res) => {
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  try {
+    const safetySettings = [
+      {
+        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
+      },
+    ];
 
-  // const chat = model.startChat({
-  //   history: req.body.history,
-  // });
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.0-pro",
+      safetySettings,
+    });
 
-  const prompt = req.body.message;
+    const chat = model.startChat({
+      history: req.body.history,
+    });
 
-  const result = await model.generateContent(prompt);
-  const response = await result.response;
-  const text = response.text();
+    const msg = req.body.message;
 
-  console.log(text);
-  res.json(text);
+    const result = await chat.sendMessage(msg);
+    const response = await result.response;
+    const text = response.text();
+
+    // console.log(text);
+    res.json(text);
+  } catch (error) {
+    res.json("Please input a proper message 😉");
+  }
 });
