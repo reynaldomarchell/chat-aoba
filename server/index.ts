@@ -21,8 +21,8 @@ app.listen(PORT, () => {
   console.log("Server is running on port 8000");
 });
 
-app.use("/", (req, res) => {
-  res.send("Server is running");
+app.get("/", (req, res) => {
+  res.send({ message: "Hello from the server!" });
 });
 
 app.post("/aoba", async (req, res) => {
