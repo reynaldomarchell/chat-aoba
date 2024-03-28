@@ -21,6 +21,10 @@ app.listen(PORT, () => {
   console.log("Server is running on port 8000");
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
 app.post("/aoba", async (req, res) => {
   try {
     const safetySettings = [
