@@ -18,7 +18,7 @@ app.use(express.json());
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 
 app.listen(PORT, () => {
-  console.log("Server is running on port 8000");
+  console.log("Server is running on http://localhost:8000/");
 });
 
 app.get("/", (req, res) => {
@@ -47,7 +47,7 @@ app.post("/aoba", async (req, res) => {
     ];
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.0-pro",
+      model: "gemini-1.0-pro-latest",
       safetySettings,
     });
 
