@@ -10,19 +10,12 @@ Aoba is a 2D AI assistant powered by the powerful large language model Gemini. Y
 ### Tools that used in this app
 
 - React JS
-- Vite
 - Express JS
+- Vite
 - Tailwind CSS
 - daisyUI
 
 ## Installation
-
-**NOTES**: Make sure you have installed TypeScript on your machine. If you haven't, run this command on your terminal
-
-```bash
-  npm install -g typescript
-  npm install -g ts-node
-```
 
 1. Clone this repository
 
