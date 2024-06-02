@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { LegacyRef, useEffect, useState } from "react";
 
 import {
   CircleFadingPlus,
@@ -8,6 +8,8 @@ import {
   SendHorizontal,
 } from "lucide-react";
 import Markdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 type chatHistoryType = {
   role: string;
@@ -20,8 +22,9 @@ const divStyle = {
 };
 
 const textStyle = {
-  user: "ml-4 w-fit rounded-xl rounded-tr-none bg-indigo-950 px-2 py-1",
-  model: "mr-4 w-fit rounded-xl rounded-tl-none bg-indigo-800 px-2 py-1",
+  user: "ml-6 w-max max-w-full rounded-xl rounded-tr-none bg-indigo-950 px-2 py-1",
+  model:
+    "mr-6 w-max max-w-full rounded-xl rounded-tl-none bg-indigo-800 px-2 py-1",
 };
 
 export default function Chat() {
@@ -92,7 +95,7 @@ export default function Chat() {
   }, [chatHistory]);
 
   return (
-    <div className="z-10 flex-grow basis-9/12">
+    <div className=" z-10 flex-grow basis-9/12 md:w-[40%]">
       <div className="flex h-full flex-col justify-evenly bg-gradient-to-br from-slate-950 to-slate-900">
         <div className="flex h-14 justify-between px-4 py-3 text-sm">
           <a
@@ -173,9 +176,45 @@ export default function Chat() {
 
 function ChatItem({ role, parts }: chatHistoryType) {
   return (
-    <div className={role == "user" ? divStyle.user : divStyle.model}>
-      <span className={role == "user" ? textStyle.user : textStyle.model}>
-        <Markdown>{parts[0].text}</Markdown>
+    <div className={`${role == "user" ? divStyle.user : divStyle.model}`}>
+      <span
+        className={`overflow-auto ${role == "user" ? textStyle.user : textStyle.model}`}
+      >
+        {
+          <Markdown
+            children={parts[0].text}
+            components={{
+              code(props) {
+                const { children, className, node, ...rest } = props;
+                const match = /language-(\w+)/.exec(className || "");
+                return match ? (
+                  <SyntaxHighlighter
+                    {...rest}
+                    PreTag="div"
+                    children={String(children).replace(/\n$/, "")}
+                    language={match ? match[1] : "text"}
+                    style={nightOwl}
+                    ref={node as unknown as LegacyRef<SyntaxHighlighter>}
+                    className="w-max max-w-full"
+                    wrapLongLines={true}
+                  />
+                ) : (
+                  <code {...rest} className={className}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          />
+        }
+
+        {/* <Markdown
+          rehypePlugins={[rehypeHighlight, rehypeRaw, rehypeSanitize]}
+          remarkPlugins={[remarkGfm]}
+          className="max-w-full"
+        >
+          {parts[0].text}
+        </Markdown> */}
       </span>
     </div>
   );
