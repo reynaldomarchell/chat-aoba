@@ -1,6 +1,6 @@
-# Chat Aoba💌
+# Chat Aoba 💌
 
-![alt text](image.png)
+![Preview](/client/public/assets/preview.png)
 
 Aoba is a 2D AI assistant powered by the powerful large language model Gemini. You can send messages to Aoba, and she will send back a reply.
 
