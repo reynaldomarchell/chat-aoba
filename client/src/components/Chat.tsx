@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { CircleFadingPlus, Coffee, SendHorizontal } from "lucide-react";
+import {
+  CircleFadingPlus,
+  Coffee,
+  Github,
+  Info,
+  SendHorizontal,
+} from "lucide-react";
 import Markdown from "react-markdown";
 
 type chatHistoryType = {
@@ -21,6 +27,7 @@ const textStyle = {
 export default function Chat() {
   const [value, setValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
   const [chatHistory, setChatHistory] = useState<chatHistoryType[]>([]);
 
   async function getResponse() {
@@ -87,13 +94,40 @@ export default function Chat() {
   return (
     <div className="z-10 flex-grow basis-9/12">
       <div className="flex h-full flex-col justify-evenly bg-gradient-to-br from-slate-950 to-slate-900">
-        <div className="flex h-14 justify-center py-3 text-sm">
+        <div className="flex h-14 justify-between px-4 py-3 text-sm">
+          <a
+            href="https://github.com/reynaldomarchell/chat-aoba"
+            target="_blank"
+            rel="noreferrer"
+            className="tooltip tooltip-bottom relative flex items-center rounded-full bg-slate-800 p-2 shadow-lg outline-none transition-colors duration-300 ease-linear hover:bg-slate-700"
+            data-tip="GitHub"
+          >
+            <Github />
+          </a>
           <button
             onClick={newChat}
-            className="flex items-center justify-between gap-2 rounded-full bg-slate-800 px-3 py-4 outline-none transition-colors duration-300 ease-linear hover:bg-slate-700"
+            className="flex items-center justify-between gap-2 rounded-full bg-slate-800 px-3 py-4 shadow-lg outline-none transition-colors duration-300 ease-linear hover:bg-slate-700"
           >
             <p>New chat</p>
             <CircleFadingPlus color="#f1f5f9" />
+          </button>
+
+          <button
+            className="relative flex items-center rounded-full bg-slate-800 p-2 shadow-lg outline-none transition-colors duration-300 ease-linear hover:bg-slate-700"
+            onClick={() => setInfoOpen(!infoOpen)}
+          >
+            <Info />
+            {infoOpen && (
+              <div className="absolute right-0 top-10 z-10 w-48 rounded-lg bg-slate-800 p-2 shadow-lg">
+                <p className=" text-xs text-slate-200">
+                  With <span className="text-indigo-400">Aoba</span> you can get
+                  information quickly, answer questions, and even help with your
+                  daily work. <span className="text-indigo-400">Aoba</span> is
+                  designed to provide an interactive and responsive experience,
+                  so you can feel like you are talking to your own friends. 💖
+                </p>
+              </div>
+            )}
           </button>
         </div>
 
