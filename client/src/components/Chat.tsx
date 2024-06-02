@@ -195,7 +195,7 @@ function ChatItem({ role, parts }: chatHistoryType) {
                     language={match ? match[1] : "text"}
                     style={nightOwl}
                     ref={node as unknown as LegacyRef<SyntaxHighlighter>}
-                    className="w-max max-w-full"
+                    className="max-w-full"
                     wrapLongLines={true}
                   />
                 ) : (
