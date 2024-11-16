@@ -44,6 +44,7 @@ export default function Chat() {
       setIsLoading(true);
       const response = await fetch(
         "https://chat-aoba-server.vercel.app/aoba",
+        // "http://localhost:8000/aoba",
         options,
       );
       const data = await response.json();
