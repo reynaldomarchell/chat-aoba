@@ -43,7 +43,7 @@ export default function Chat() {
 
       setIsLoading(true);
       const response = await fetch(
-        "https://chat-aoba-server.vercel.app/aoba",
+        import.meta.env.VITE_API_URL,
         // "http://localhost:8000/aoba",
         options,
       );
